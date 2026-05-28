@@ -20,6 +20,103 @@ const inlineCta = `
 
 export const posts: Post[] = [
   {
+    slug: "5-best-junk-removal-companies-des-moines",
+    title: "5 Best Junk Removal Companies in Des Moines",
+    metaTitle: "5 Best Junk Removal Companies in Des Moines (2026 Guide)",
+    metaDescription: "An honest comparison of the top 5 junk removal companies in Des Moines. Services, pricing, and who each one is best for. Updated 2026.",
+    date: "May 28, 2026",
+    readTime: "9 min",
+    excerpt: "There are a handful of solid junk removal companies serving the Des Moines metro. Here's an honest comparison of the top 5, who each is best for, and how to pick.",
+    image: "/images/dsm-1.jpg",
+    imageAlt: "Best junk removal companies in Des Moines comparison",
+    body: `
+<p>If you've Googled "junk removal Des Moines," you've seen the same handful of names come up over and over: a few national franchises, a few local operators, and a long tail of one-truck haulers. The good news is the metro is well-served. The harder question is figuring out which one is right for your specific job.</p>
+<p>This is an honest comparison of the five top junk removal companies serving the Des Moines metro. Yes, we're one of them. We've put ourselves at #2 because we genuinely think Junk King's truck size and price guarantee make them the right answer for a lot of jobs. We're listing every competitor with what they're actually best at, not a watered-down marketing pitch.</p>
+
+<h2>How We Picked the Top 5</h2>
+<p>We looked at companies that:</p>
+<ul>
+  <li>Have an established Des Moines metro presence (not pop-up haulers or lead-gen aggregators)</li>
+  <li>Show up consistently on page one of Google for "junk removal Des Moines" and related queries</li>
+  <li>Have verifiable customer reviews and a real service track record</li>
+  <li>Cover most of the metro, not just one suburb</li>
+</ul>
+<p>Then we ranked them by overall search visibility, customer review volume, and the breadth of services offered. Pricing was a factor but secondary, since every job is different.</p>
+
+<h2>1. Junk King Des Moines</h2>
+<p><img src="/images/competitors/competitor-1-junk-king-des-moines.jpg" alt="Junk King Des Moines homepage screenshot" /></p>
+<p><strong>Website:</strong> <a href="https://www.junk-king.com/locations/des-moines" target="_blank" rel="noopener noreferrer">junk-king.com/locations/des-moines</a></p>
+<p><strong>Reviews:</strong> ~394+ Google reviews, ~4.9 stars</p>
+<p>Junk King is a national franchise (part of the Neighborly family) with a strong local presence in the Des Moines metro. They built their reputation on three things: oversized trucks (about 20% larger than the standard hauling truck, around 18 cubic yards), a price-beat guarantee on any written competitor estimate, and a strong recycling track record (up to 60% of hauled items are recycled or repurposed).</p>
+<p><strong>Where they shine:</strong> Larger jobs where truck volume matters. Because their trucks are bigger, you can fit more into a single load before you tick up to a higher pricing tier. They also offer a $20 online booking discount and same-day appointments when crews are available.</p>
+<p><strong>Service area:</strong> Most of the Des Moines metro plus surrounding communities including Ames, Newton, Pella, and Adel.</p>
+<p><strong>Best for:</strong> Customers who want a national-brand price guarantee, larger truck capacity, and broad metro coverage.</p>
+
+<div class="inline-cta">
+  <h4>Want a Quick Comparison Quote?</h4>
+  <p>Text photos to (515) 414-2280 and we'll send a flat-rate price the same day. Compare it against any other quote in town.</p>
+  <a href="/contact/" class="btn btn-primary">Get Our Quote</a>
+</div>
+
+<h2>2. Des Moines Junk Removal (That's Us)</h2>
+<p><img src="/images/dsm-1.jpg" alt="Des Moines Junk Removal family-owned hauling truck" /></p>
+<p><strong>Website:</strong> <a href="https://dsmjunkremoval.com">dsmjunkremoval.com</a></p>
+<p>We're family-owned and have been hauling junk across the Des Moines metro for twelve years. Our pitch is simple: local ownership on the truck, flat-rate quotes you get before anyone touches your stuff, and a crew that actually cares about not scratching your door frames on the way out.</p>
+<p><strong>Where we shine:</strong> Local responsiveness, honest pricing, and the kind of jobs where access matters (older homes in Sherman Hill, basement clear-outs with tight stairs, alley-access garages in Valley Junction). We're typically scheduled within 2 to 4 days, with same-day slots opening up regularly.</p>
+<p><strong>Service area:</strong> Des Moines, West Des Moines, Ankeny, Urbandale, Waukee, Johnston, Altoona, Clive, Pleasant Hill, Norwalk, Grimes, Windsor Heights, plus surrounding communities.</p>
+<p><strong>Best for:</strong> Customers who want a local family-owned operator over a national franchise, honest flat-rate pricing, and a crew that knows the metro's older neighborhoods.</p>
+<p><a href="/pricing/">See our flat-rate pricing →</a></p>
+
+<h2>3. College HUNKS Hauling Junk &amp; Moving</h2>
+<p><img src="/images/competitors/competitor-2-college-hunks-des-moines.jpg" alt="College HUNKS Hauling Junk Des Moines homepage screenshot" /></p>
+<p><strong>Website:</strong> <a href="https://www.collegehunkshaulingjunk.com/des-moines/" target="_blank" rel="noopener noreferrer">collegehunkshaulingjunk.com/des-moines</a></p>
+<p><strong>Reviews:</strong> ~4.8-4.9 stars, hundreds of local reviews (system-wide average 4.9 across 195,000+ Google reviews)</p>
+<p>College HUNKS is a national franchise built around the idea of pairing junk removal with full-service moving, all under one roof. Uniformed crews, recognizable brand, and a focus on stress-free service. They donate or recycle up to 70% of items hauled.</p>
+<p><strong>Where they shine:</strong> One-stop convenience. If you're already moving (local or long-distance), College HUNKS can handle the haul-away of unwanted items as part of the same booking. Their brand recognition also means consistent service standards across locations.</p>
+<p><strong>Service area:</strong> Des Moines, West Des Moines, Clive, Urbandale, Ankeny, Johnston, Waukee, and surrounding metro.</p>
+<p><strong>Best for:</strong> Customers who want junk removal and moving help bundled together, or who prefer a recognizable national brand.</p>
+
+<h2>4. The Goat Junk Removal</h2>
+<p><img src="/images/competitors/competitor-3-the-goat-junk-removal.jpg" alt="The Goat Junk Removal Central Iowa homepage screenshot" /></p>
+<p><strong>Website:</strong> <a href="https://thegoatjunkremoval.com/" target="_blank" rel="noopener noreferrer">thegoatjunkremoval.com</a></p>
+<p>The Goat is a Central Iowa local operator with over two decades of hauling experience. They're known for handling heavy cleanouts (hoarder situations, estate clear-outs), the full range of standard services (furniture, appliances, yard waste, brush), and they also offer dump trailer rentals for DIY jobs.</p>
+<p><strong>Where they shine:</strong> Larger and more complex cleanouts where 20+ years of experience makes a real difference. Their dump trailer rental option is also useful if you'd rather load it yourself and skip the labor cost.</p>
+<p><strong>Service area:</strong> Ankeny, Des Moines, and the broader Central Iowa region.</p>
+<p><strong>Best for:</strong> Customers with heavy cleanouts who want a seasoned local operator, or anyone considering a DIY dump trailer rental as an alternative to full-service hauling.</p>
+
+<h2>5. Junk Free Iowa</h2>
+<p><img src="/images/competitors/competitor-4-junk-free-iowa.jpg" alt="Junk Free Iowa homepage screenshot" /></p>
+<p><strong>Website:</strong> <a href="https://junkfreeiowa.com/" target="_blank" rel="noopener noreferrer">junkfreeiowa.com</a></p>
+<p>Junk Free Iowa is an Ankeny-based independent that positions itself as the "real Iowans, not a 1-800 call center" alternative. They offer free instant quotes, upfront no-hidden-fee pricing, and customer-experience touches like SMS arrival updates 24 hours before the job.</p>
+<p><strong>Where they shine:</strong> Communication. The SMS updates, clear published pricing, and no-call-center experience appeal to customers who've had bad experiences with franchise dispatch systems.</p>
+<p><strong>Service area:</strong> Des Moines, Ankeny, Urbandale, West Des Moines, Ames, Boone, Clive, Grimes, Johnston, and 20+ additional Central Iowa towns across five counties.</p>
+<p><strong>Best for:</strong> Customers who want a local independent and value clear communication and SMS updates over brand recognition.</p>
+
+<h2>How to Pick the Right One</h2>
+<p>Honestly, you can't go badly wrong with any of these five. They're all licensed, insured, and have solid track records in the metro. The right pick depends on your specific job:</p>
+<ul>
+  <li><strong>Large-volume cleanout?</strong> Junk King's bigger trucks give you the best value per load.</li>
+  <li><strong>Local job in an older Des Moines neighborhood?</strong> Our crew knows the access challenges and family-owned responsiveness usually wins here.</li>
+  <li><strong>Moving and junk removal in one shot?</strong> College HUNKS bundles it.</li>
+  <li><strong>Heavy cleanout or DIY trailer rental?</strong> The Goat.</li>
+  <li><strong>Local communication and clear pricing?</strong> Junk Free Iowa.</li>
+</ul>
+<p>The best move is to get 2 to 3 quotes for any larger job. Most of these companies (including us) will send a flat-rate price the same day if you text photos. Compare and pick.</p>
+
+<h2>What All Five Have in Common</h2>
+<ul>
+  <li>Licensed and insured Iowa hauling</li>
+  <li>Same-week scheduling (often same-day)</li>
+  <li>Donation and recycling routing for usable items</li>
+  <li>Free quotes</li>
+  <li>Service across most of the Des Moines metro</li>
+</ul>
+
+<h2>Ready for a Real Quote?</h2>
+<p>Text photos of your job to (515) 414-2280 or use our quote form. We'll send a flat-rate price the same day, and you can compare it against any other quote in town.</p>
+`
+  },
+  {
     slug: "junk-removal-cost-des-moines",
     title: "How Much Does Junk Removal Cost in Des Moines?",
     metaTitle: "How Much Does Junk Removal Cost in Des Moines? (2026)",
