@@ -1,0 +1,50 @@
+---
+import Layout from '../layouts/Layout.astro';
+import QuoteForm from '../components/QuoteForm.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import { site } from '../data/site';
+
+const title = "Contact Des Moines Junk Removal | Free Quote (515) 414-2280";
+const description = "Get a free flat-rate junk removal quote in Des Moines. Call (515) 414-2280, text photos, or fill out our online form. Same-week pickup across the metro.";
+
+const localBusinessLd = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": site.name,
+  "telephone": site.phoneE164,
+  "email": site.email,
+  "url": site.url,
+  "image": `${site.url}/images/og.jpg`,
+  "openingHours": "Mo-Sa 07:00-19:00",
+  "address": { "@type": "PostalAddress", "addressLocality": "Des Moines", "addressRegion": "IA", "addressCountry": "US" }
+};
+---
+<Layout title={title} description={description} path="/contact/" jsonLd={localBusinessLd}>
+
+<section class="hero" style="--hero-bg: url('/images/dsm-2.jpg');">
+  <h1>Get a Free Junk Removal Quote</h1>
+  <p class="subhead">Fastest way to a quote: text photos to (515) 414-2280. Or call, email, or use the form below.</p>
+</section>
+
+<Breadcrumb trail={[{ name: "Home", href: "/" }, { name: "Contact" }]} />
+
+<section>
+  <div class="container">
+    <div class="split">
+      <div>
+        <h2>How to Reach Us</h2>
+        <p style="font-size:1.1rem;"><strong>Phone:</strong><br/><a href={`tel:${site.phoneE164}`} style="font-size:1.4rem;">{site.phone}</a></p>
+        <p style="font-size:1.1rem;"><strong>Email:</strong><br/><a href={`mailto:${site.email}`}>{site.email}</a></p>
+        <p style="font-size:1.1rem;"><strong>Hours:</strong><br/>{site.hoursDisplay}</p>
+        <p><strong>Service Area:</strong><br/>We're a service-area business based in Des Moines. We come to you. Serving the entire Des Moines metro including West Des Moines, Ankeny, Urbandale, Waukee, Johnston, Altoona, Clive, and surrounding communities.</p>
+        <p><strong>Fastest quote:</strong> text a few photos of what you need hauled to <a href={`tel:${site.phoneE164}`}>{site.phone}</a>. We send back a flat-rate price the same day.</p>
+      </div>
+      <div>
+        <h2>Or Use the Form</h2>
+        <QuoteForm />
+      </div>
+    </div>
+  </div>
+</section>
+
+</Layout>

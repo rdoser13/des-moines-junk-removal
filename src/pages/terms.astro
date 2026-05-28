@@ -1,0 +1,36 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import { site } from '../data/site';
+const today = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+---
+<Layout title="Terms of Service | Des Moines Junk Removal" description="Terms of service for using the Des Moines Junk Removal website." path="/terms/">
+
+<section style="padding-top:3rem;">
+  <Breadcrumb trail={[{ name: "Home", href: "/" }, { name: "Terms of Service" }]} />
+  <div class="container legal-content">
+    <h1>Terms of Service</h1>
+    <p class="note">This is a starting template. For final legal review, consult a licensed attorney in Iowa.</p>
+    <p><strong>Effective date:</strong> {today}</p>
+
+    <h2>Acceptance of Terms</h2>
+    <p>By using this website, you agree to these terms. If you do not agree, please do not use the site.</p>
+
+    <h2>Description of Services</h2>
+    <p>This website provides information about the junk removal and hauling services offered by Des Moines Junk Removal. Quotes provided through the site or by phone are estimates only and are not binding contracts until both parties confirm the scope, price, and pickup date.</p>
+
+    <h2>Limitation of Liability</h2>
+    <p>Information on this site is provided "as is" without warranties of any kind. We are not liable for any damages arising from your use of the website itself. For service-related terms (insurance coverage, damage policies, etc.), please reach out directly.</p>
+
+    <h2>Intellectual Property</h2>
+    <p>All content on this site, including text, logos, photos, and design, is owned by Des Moines Junk Removal unless otherwise noted. You may not reproduce or republish content without permission.</p>
+
+    <h2>Governing Law</h2>
+    <p>These terms are governed by the laws of the State of Iowa.</p>
+
+    <h2>Contact</h2>
+    <p>Questions? Email <a href={`mailto:${site.email}`}>{site.email}</a>.</p>
+  </div>
+</section>
+
+</Layout>

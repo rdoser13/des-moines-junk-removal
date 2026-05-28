@@ -1,0 +1,57 @@
+---
+import Layout from '../layouts/Layout.astro';
+import FinalCTA from '../components/FinalCTA.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import Icon from '../components/Icon.astro';
+import { cities, additionalServiceAreas } from '../data/cities';
+import { site } from '../data/site';
+
+const title = "Des Moines Metro Service Area | Des Moines Junk Removal";
+const description = "We provide junk removal across the entire Des Moines metro, including West Des Moines, Ankeny, Urbandale, Waukee, Johnston, Altoona, Clive, Pleasant Hill, Norwalk, Grimes, and Windsor Heights.";
+---
+<Layout title={title} description={description} path="/service-area/">
+
+<section class="hero" style="--hero-bg: url('/images/dsm-7.jpg');">
+  <h1>Our Des Moines Metro Service Area</h1>
+  <p class="subhead">Family-owned junk removal across every city in the greater Des Moines metro. Same-week pickup, flat-rate pricing.</p>
+  <div class="cta-row">
+    <a href={`tel:${site.phoneE164}`} class="btn btn-primary"><Icon name="phone" size={18} /> Call {site.phone}</a>
+    <a href="/contact/" class="btn btn-outline-white">Get a Free Quote</a>
+  </div>
+</section>
+
+<Breadcrumb trail={[{ name: "Home", href: "/" }, { name: "Service Area" }]} />
+
+<section>
+  <div class="container">
+    <div class="section-head">
+      <h2>Cities We Serve</h2>
+      <p>Click any city for local junk removal details, neighborhoods, and ZIP codes we cover.</p>
+    </div>
+    <div class="card-grid">
+      {cities.map((c) => (
+        <div class="card">
+          <div class="icon-circle"><Icon name="mappin" size={28} /></div>
+          <h3>{c.name}</h3>
+          <p>Serving {c.neighborhoods.slice(0, 3).join(', ')}, and more.</p>
+          <a href={`/${c.slug}/`} class="card-link">Junk removal in {c.name} <Icon name="arrowright" size={14} /></a>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section class="section-alt">
+  <div class="container-narrow">
+    <h2>Additional Communities We Serve</h2>
+    <p>We also haul junk in the following surrounding communities. Same flat-rate pricing, same family-owned crew:</p>
+    <ul>
+      {additionalServiceAreas.map((a) => (<li>{a}</li>))}
+    </ul>
+    <p>If your town isn't listed but you're within a reasonable drive of the Des Moines metro, give us a call at <a href={`tel:${site.phoneE164}`}>{site.phone}</a>. We'll let you know if we can make the trip.</p>
+  </div>
+</section>
+
+<FinalCTA />
+
+</Layout>

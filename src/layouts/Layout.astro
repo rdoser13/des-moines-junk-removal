@@ -1,0 +1,162 @@
+---
+import '../styles/global.css';
+import Icon from '../components/Icon.astro';
+import { site } from '../data/site';
+import { services } from '../data/services';
+import { cities } from '../data/cities';
+
+export interface Props {
+  title: string;
+  description: string;
+  path: string;
+  ogImage?: string;
+  jsonLd?: object | object[];
+}
+
+const { title, description, path, ogImage = '/images/og.jpg', jsonLd } = Astro.props;
+const canonical = `${site.url}${path}`;
+const ogImageUrl = ogImage.startsWith('http') ? ogImage : `${site.url}${ogImage}`;
+const jsonLdArr = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
+
+const smsHref = `sms:${site.phoneE164}`;
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0D1B2A" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={canonical} />
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:image" content={ogImageUrl} />
+  <meta property="og:url" content={canonical} />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content={site.name} />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=League+Spartan:wght@600;700&family=Montserrat:wght@500;600;700&display=swap" rel="stylesheet" />
+
+  {jsonLdArr.map((item) => (
+    <script type="application/ld+json" set:html={JSON.stringify(item)} />
+  ))}
+</head>
+<body>
+
+<header class="site-header">
+  <div class="inner">
+    <a href="/" class="logo" aria-label={`${site.name} home`}>
+      <img src="/images/logo.png" alt={`${site.name} logo`} width="48" height="48" />
+      <span class="logo-text">Des Moines<br/>Junk Removal</span>
+    </a>
+    <button class="nav-toggle" aria-label="Toggle navigation" id="navToggle"><Icon name="menu" size={28} /></button>
+    <nav class="site-nav" id="siteNav">
+      <a href="/">Home</a>
+      <div class="has-dropdown">
+        <button type="button" aria-haspopup="true">Services <Icon name="chevron" size={16} /></button>
+        <div class="dropdown">
+          {services.map((s) => (<a href={`/${s.slug}/`}>{s.name}</a>))}
+          <div class="divider"></div>
+          <a href="/services/">All Services</a>
+          <a href="/pricing/">Pricing</a>
+        </div>
+      </div>
+      <div class="has-dropdown">
+        <button type="button" aria-haspopup="true">Service Area <Icon name="chevron" size={16} /></button>
+        <div class="dropdown">
+          {cities.map((c) => (<a href={`/${c.slug}/`}>{c.name}</a>))}
+          <div class="divider"></div>
+          <a href="/service-area/">Full Service Area</a>
+        </div>
+      </div>
+      <a href="/gallery/">Gallery</a>
+      <a href="/blog/">Blog</a>
+      <a href="/about/">About</a>
+      <a href="/contact/" class="quote-cta">Free Quote</a>
+      <a href={`tel:${site.phoneE164}`} class="phone-cta"><Icon name="phone" size={16} /> {site.phone}</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <slot />
+</main>
+
+<footer class="site-footer">
+  <div class="footer-grid">
+    <div>
+      <h4>{site.name}</h4>
+      <p>Family-owned junk removal and hauling across the Des Moines metro. We Lift. You Relax.</p>
+      <p><strong>Phone:</strong> <a href={`tel:${site.phoneE164}`} style="color:#fff;">{site.phone}</a></p>
+      <p><strong>Email:</strong> <a href={`mailto:${site.email}`} style="color:#fff;">{site.email}</a></p>
+      <p><strong>Hours:</strong> {site.hoursDisplay}</p>
+      <div class="badge-row" style="justify-content:flex-start; margin-top:1rem;">
+        <span class="badge-pill">Licensed</span>
+        <span class="badge-pill">Insured</span>
+        <span class="badge-pill">Family-Owned</span>
+        <span class="badge-pill">12 Years</span>
+      </div>
+    </div>
+    <div>
+      <h4>Services</h4>
+      {services.map((s) => (<a href={`/${s.slug}/`}>{s.shortName}</a>))}
+      <a href="/services/">All Services</a>
+      <a href="/pricing/">Pricing</a>
+    </div>
+    <div>
+      <h4>Service Areas</h4>
+      {cities.map((c) => (<a href={`/${c.slug}/`}>{c.name}</a>))}
+      <a href="/service-area/">Full Service Area</a>
+    </div>
+    <div>
+      <h4>Company</h4>
+      <a href="/about/">About</a>
+      <a href="/gallery/">Before &amp; After Gallery</a>
+      <a href="/blog/">Blog</a>
+      <a href="/faq/">FAQ</a>
+      <a href="/contact/">Contact</a>
+      <a href="/privacy/">Privacy Policy</a>
+      <a href="/terms/">Terms of Service</a>
+      <a href="/disclaimer/">Disclaimer</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© {new Date().getFullYear()} {site.name}. All rights reserved.</span>
+    <span>Licensed &amp; Insured Iowa Hauling Contractor</span>
+  </div>
+</footer>
+
+<div class="mobile-cta-bar" aria-label="Quick contact">
+  <div class="row">
+    <a href={`tel:${site.phoneE164}`} class="call"><Icon name="phone" size={18} /><span>Call</span></a>
+    <a href={smsHref} class="text"><Icon name="message" size={18} /><span>Text</span></a>
+    <a href="/contact/" class="quote"><Icon name="check" size={18} /><span>Free Quote</span></a>
+  </div>
+</div>
+
+<script>
+  const t = document.getElementById('navToggle');
+  const n = document.getElementById('siteNav');
+  if (t && n) t.addEventListener('click', () => n.classList.toggle('open'));
+  // Mobile dropdown toggles
+  document.querySelectorAll('.has-dropdown > button').forEach((btn) => {
+    btn.addEventListener('click', (e) => {
+      if (window.innerWidth <= 950) {
+        e.preventDefault();
+        btn.parentElement.classList.toggle('open');
+      }
+    });
+  });
+</script>
+
+</body>
+</html>

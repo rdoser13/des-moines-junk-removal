@@ -1,0 +1,63 @@
+---
+import Layout from '../layouts/Layout.astro';
+import FinalCTA from '../components/FinalCTA.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import { site } from '../data/site';
+
+const title = "Junk Removal FAQs in Des Moines | Des Moines Junk Removal";
+const description = "Common junk removal questions for Des Moines customers: pricing, scheduling, what we take, what we don't, and how the process works.";
+
+const faqs = [
+  { q: "How much does junk removal cost in Des Moines?", a: "Single-item pickups start around $95. Most full garage cleanouts run $300 to $850 depending on volume. Full truck loads top out around $750. We quote flat-rate based on truck volume, not hours. See our full pricing breakdown on the pricing page." },
+  { q: "How fast can you pick up?", a: "Most jobs in the Des Moines metro are scheduled within 2 to 4 days. Same-day slots open up regularly, especially for single-item pickups. Routine jobs called in before noon often get same-day service." },
+  { q: "What areas do you serve?", a: "We serve the entire Des Moines metro: Des Moines, West Des Moines, Ankeny, Urbandale, Waukee, Johnston, Altoona, Clive, Pleasant Hill, Norwalk, Grimes, Windsor Heights, plus surrounding communities like Bondurant, Carlisle, Indianola, and Polk City." },
+  { q: "What do you take?", a: "Furniture, mattresses, appliances (including refrigerators and freezers), garage and basement contents, yard waste, construction and remodel debris, electronics, hot tubs, pianos, exercise equipment, and most non-hazardous items." },
+  { q: "What won't you take?", a: "We can't haul wet paint, motor oil, gasoline, pesticides, propane tanks, ammunition, asbestos, or medical/biohazard waste. These go to the Metro Hazardous Waste Drop-Off Facility in Polk County. We can advise on what falls into which category." },
+  { q: "Do I need to be home?", a: "No. As long as we can access the items and have clear instructions on what stays and what goes, we can complete most jobs without you on site. Payment can be handled by phone or text." },
+  { q: "How do you price?", a: "Flat-rate, based on the volume of truck space your items fill. No hourly meter. No surprise fees. You get a written price before we touch anything. Heavy materials like concrete and shingles carry per-ton transfer station fees that we include up front." },
+  { q: "Do you donate or recycle?", a: "Yes. Usable furniture, clothing, and household goods go to local donation partners first. Metal appliances are sorted for scrap recycling. Refrigerators and freezers go to an EPA-compliant recycler that reclaims the refrigerant. Construction debris goes to permitted C&D recyclers when possible." },
+  { q: "Do you carry insurance?", a: "Yes. We're a licensed Iowa hauling contractor with full general liability insurance. Your floors, walls, and property are protected on every job." },
+  { q: "What payment methods do you accept?", a: "Cash, check, credit and debit cards, Venmo, and Zelle. Net-30 invoicing is available for established commercial accounts and property managers." },
+  { q: "Do you work weekends?", a: "Yes. We run Monday through Saturday, 7 AM to 7 PM. Sunday pickups can be arranged for urgent jobs." },
+  { q: "Can you provide a written disposal record?", a: "Yes. For commercial customers, contractors, or any job that needs disposal documentation, we keep transfer station receipts and provide an itemized record on request." },
+  { q: "Do you work with property managers and real estate agents?", a: "Yes. We handle one-off rental turnovers, recurring schedules for property managers, and estate cleanouts coordinated with real estate agents. Net-30 invoicing available for established accounts." },
+  { q: "Will you take items from inside the house or upper floors?", a: "Yes. Our crew comes inside, carries items down stairs, and protects floors and door frames on the way out. No need to drag anything to the curb." },
+  { q: "Do you handle hoarding situations?", a: "Yes. We've cleared hoarding-level homes across the Des Moines metro. We bring protective gear, extra crew, and discretion. Quotes are confidential." },
+  { q: "How is junk removal different from a dumpster rental?", a: "With a dumpster you load it yourself and it sits on your driveway for the rental period. With us, our crew loads everything, hauls it the same day, and you don't have to lift anything. For long projects, a dumpster may make more sense. For one-time clear-outs, we're faster and cheaper. See our full breakdown on the blog." },
+];
+
+const faqLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map((f) => ({
+    "@type": "Question",
+    "name": f.q,
+    "acceptedAnswer": { "@type": "Answer", "text": f.a }
+  }))
+};
+---
+<Layout title={title} description={description} path="/faq/" jsonLd={faqLd}>
+
+<section class="hero" style="--hero-bg: url('/images/dsm-4.jpg');">
+  <h1>Junk Removal FAQs</h1>
+  <p class="subhead">Common questions from Des Moines metro customers, answered.</p>
+</section>
+
+<Breadcrumb trail={[{ name: "Home", href: "/" }, { name: "FAQ" }]} />
+
+<section>
+  <div class="container-narrow">
+    <div class="faq">
+      {faqs.map((f) => (
+        <details>
+          <summary>{f.q}</summary>
+          <p>{f.a}</p>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<FinalCTA heading="Have a Question We Didn't Cover?" body="Call or text us at (515) 414-2280. We're happy to walk you through it." />
+
+</Layout>

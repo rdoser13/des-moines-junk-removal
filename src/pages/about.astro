@@ -1,0 +1,60 @@
+---
+import Layout from '../layouts/Layout.astro';
+import FinalCTA from '../components/FinalCTA.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import { site } from '../data/site';
+
+const title = "About Des Moines Junk Removal | Family-Owned Iowa Hauling";
+const description = "Family-owned junk removal in Des Moines for 12 years. Licensed and insured Iowa hauling contractor serving the entire metro. Learn more about our crew.";
+
+const localBusinessLd = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": site.name,
+  "telephone": site.phoneE164,
+  "email": site.email,
+  "url": site.url,
+  "image": `${site.url}/images/og.jpg`,
+  "address": { "@type": "PostalAddress", "addressLocality": "Des Moines", "addressRegion": "IA", "addressCountry": "US" }
+};
+---
+<Layout title={title} description={description} path="/about/" jsonLd={localBusinessLd}>
+
+<section class="hero" style="--hero-bg: url('/images/dsm-11.jpg');">
+  <h1>About Des Moines Junk Removal</h1>
+  <p class="subhead">Family-owned, locally operated, and trusted across the Des Moines metro since 2014.</p>
+</section>
+
+<Breadcrumb trail={[{ name: "Home", href: "/" }, { name: "About" }]} />
+
+<section>
+  <div class="container-narrow">
+    <h2>Our Story</h2>
+    <p>Des Moines Junk Removal started in 2014 as a family-owned hauling company with one truck and one goal: give people a faster, cleaner alternative to renting a dumpster or wrestling a couch out of a basement on their own.</p>
+    <p>Twelve years later, we're still family-owned. We've grown the crew and added trucks, but every job still gets the same attention as our first one. The owners are on the trucks. The crew has been with us for years. And the price you're quoted is the price you pay.</p>
+
+    <h2>What We Do</h2>
+    <p>We haul junk. Furniture, appliances, garage piles, basement clutter, construction debris, estate cleanouts, hot tubs, mattresses, and everything in between. Residential, commercial, rental properties, and job sites across the Des Moines metro.</p>
+    <p>What we don't do is hidden fees, hourly meters, or upsells. You send photos, we send a flat-rate quote, you pick a day, and we show up and load. That's it.</p>
+
+    <h2>Licensed, Insured, and Local</h2>
+    <p>We're a licensed Iowa hauling contractor with full general liability insurance. Every member of our crew is covered, every truck is permitted, and every load is disposed of through the appropriate transfer station, donation center, or recycler.</p>
+    <p>That matters. When an uninsured hauler damages your floor, scratches a door frame, or dumps your old fridge in a roadside ditch, you're the one stuck with the cleanup. We carry the insurance and follow the rules so you don't have to think about it.</p>
+
+    <h2>Where We Work</h2>
+    <p>We serve the entire Des Moines metro: Des Moines, West Des Moines, Ankeny, Urbandale, Waukee, Johnston, Altoona, Clive, Pleasant Hill, Windsor Heights, Norwalk, Grimes, and the surrounding communities. If you're within a reasonable drive of the metro, we can probably get to you. <a href="/service-area/">See our full service area</a>.</p>
+
+    <h2>Why Customers Stick With Us</h2>
+    <ul>
+      <li><strong>Family-owned.</strong> The owners are on the trucks. Decisions get made on the spot, not by a corporate office out of state.</li>
+      <li><strong>12 years of local experience.</strong> We've seen every kind of Des Moines garage, basement, and rental property turnover.</li>
+      <li><strong>Honest pricing.</strong> Flat-rate quotes, sent before we touch a thing.</li>
+      <li><strong>Responsible disposal.</strong> Donate, recycle, then haul. Not the other way around.</li>
+      <li><strong>Same-week pickup.</strong> Most jobs are scheduled within 2 to 4 days.</li>
+    </ul>
+  </div>
+</section>
+
+<FinalCTA />
+
+</Layout>

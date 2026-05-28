@@ -1,0 +1,161 @@
+---
+import Layout from '../layouts/Layout.astro';
+import FinalCTA from '../components/FinalCTA.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import Icon from '../components/Icon.astro';
+import QuoteForm from '../components/QuoteForm.astro';
+import { services } from '../data/services';
+import { cities } from '../data/cities';
+import { site } from '../data/site';
+
+export async function getStaticPaths() {
+  return services.map((s) => ({ params: { service: s.slug }, props: { service: s } }));
+}
+
+const { service } = Astro.props;
+const path = `/${service.slug}/`;
+
+const serviceLd = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "serviceType": service.name,
+  "provider": { "@type": "LocalBusiness", "name": site.name, "telephone": site.phoneE164, "url": site.url },
+  "areaServed": cities.map((c) => ({ "@type": "City", "name": c.name })),
+  "description": service.heroSubhead,
+  "url": `${site.url}${path}`
+};
+const faqLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": service.faqs.map((f) => ({
+    "@type": "Question",
+    "name": f.q,
+    "acceptedAnswer": { "@type": "Answer", "text": f.a }
+  }))
+};
+const crumbsLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": site.url + "/" },
+    { "@type": "ListItem", "position": 2, "name": "Services", "item": site.url + "/services/" },
+    { "@type": "ListItem", "position": 3, "name": service.name, "item": site.url + path }
+  ]
+};
+---
+<Layout title={service.metaTitle} description={service.metaDescription} path={path} jsonLd={[serviceLd, faqLd, crumbsLd]}>
+
+<section class="hero" style={`--hero-bg: url('${service.image}');`}>
+  <div class="icon-circle" style="background:rgba(255,255,255,0.15); color:#fff; margin:0 auto 1rem;"><Icon name={service.icon} size={36} /></div>
+  <h1>{service.name} in Des Moines</h1>
+  <p class="subhead">{service.heroSubhead}</p>
+  <div class="cta-row">
+    <a href={`tel:${site.phoneE164}`} class="btn btn-primary"><Icon name="phone" size={18} /> Call {site.phone}</a>
+    <a href="/contact/" class="btn btn-outline-white">Get a Free Quote</a>
+  </div>
+  <div class="hero-trust">
+    {service.priceFrom && <span><Icon name="dollar" size={16} /> Starting at {service.priceFrom}</span>}
+    <span><Icon name="clock" size={16} /> Same-Week Pickup</span>
+    <span><Icon name="shield" size={16} /> Licensed &amp; Insured</span>
+    <span><Icon name="recycle" size={16} /> Responsible Disposal</span>
+  </div>
+</section>
+
+<Breadcrumb trail={[{ name: "Home", href: "/" }, { name: "Services", href: "/services/" }, { name: service.name }]} />
+
+<section>
+  <div class="container">
+    <div class="split">
+      <div>
+        <h2>What Is {service.name}?</h2>
+        {service.whatIs.map((p) => (<p>{p}</p>))}
+      </div>
+      <img src={service.image} alt={service.imageAlt} loading="lazy" decoding="async" />
+    </div>
+  </div>
+</section>
+
+<section class="section-alt">
+  <div class="container-narrow">
+    <h2>Signs You Need {service.name} in Des Moines</h2>
+    <ul>
+      {service.signs.map((s) => (<li>{s}</li>))}
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="section-head">
+      <h2>Our {service.name} Process</h2>
+      <p>Four simple steps from quote to clean space.</p>
+    </div>
+    <div class="process">
+      {service.process.map((step) => (
+        <div class="step">
+          <h3>{step.title}</h3>
+          <p>{step.body}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section class="section-alt">
+  <div class="container-narrow">
+    <h2>{service.name} Pricing in Des Moines</h2>
+    <p>{service.pricing}</p>
+    <p><strong>What affects your final price:</strong></p>
+    <ul>
+      {service.pricingNotes.map((n) => (<li>{n}</li>))}
+    </ul>
+    <p>The only way to give you an exact price is to see the items. Text photos to <a href={`tel:${site.phoneE164}`}>{site.phone}</a> and we'll send a flat-rate quote the same day. <a href="/pricing/">See all junk removal pricing →</a></p>
+  </div>
+</section>
+
+<section>
+  <div class="container-narrow">
+    <div class="section-head">
+      <h2>Frequently Asked Questions</h2>
+      <p>{service.name} questions, answered.</p>
+    </div>
+    <div class="faq">
+      {service.faqs.map((f) => (
+        <details>
+          <summary>{f.q}</summary>
+          <p>{f.a}</p>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section class="section-alt">
+  <div class="container">
+    <div class="section-head">
+      <h2>{service.name} Across the Des Moines Metro</h2>
+      <p>We provide {service.name.toLowerCase()} in every city across the Des Moines metro.</p>
+    </div>
+    <div class="city-grid">
+      {cities.map((c) => (
+        <a href={`/${c.slug}/`}>{service.shortName} in {c.name}</a>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="section-head">
+      <h2>Request a Free {service.name} Quote</h2>
+      <p>Send a few photos and we'll send back a flat-rate price the same day.</p>
+    </div>
+    <div class="embedded-form">
+      <QuoteForm subject={`New ${service.name} lead from website`} />
+    </div>
+  </div>
+</section>
+
+<FinalCTA heading={`Need ${service.name} in Des Moines?`} body={`Text photos to ${site.phone} for a same-day flat-rate quote. Same-week pickup across the metro.`} />
+
+</Layout>

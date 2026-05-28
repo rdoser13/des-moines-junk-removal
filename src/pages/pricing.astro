@@ -1,0 +1,133 @@
+---
+import Layout from '../layouts/Layout.astro';
+import FinalCTA from '../components/FinalCTA.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import Icon from '../components/Icon.astro';
+import { services } from '../data/services';
+import { site } from '../data/site';
+
+const title = "Junk Removal Pricing in Des Moines | Flat-Rate Quotes";
+const description = "Honest, flat-rate junk removal pricing in Des Moines. Truck-load tiers, single-item rates, and what affects your final price. Call (515) 414-2280 for a free quote.";
+---
+<Layout title={title} description={description} path="/pricing/">
+
+<section class="hero" style="--hero-bg: url('/images/dsm-3.jpg');">
+  <h1>Junk Removal Pricing in Des Moines</h1>
+  <p class="subhead">Flat-rate quotes, no hourly meter, no hidden fees. What you're quoted is what you pay.</p>
+  <div class="cta-row">
+    <a href={`tel:${site.phoneE164}`} class="btn btn-primary"><Icon name="phone" size={18} /> Call {site.phone}</a>
+    <a href="/contact/" class="btn btn-outline-white">Get a Free Quote</a>
+  </div>
+</section>
+
+<Breadcrumb trail={[{ name: "Home", href: "/" }, { name: "Pricing" }]} />
+
+<section>
+  <div class="container">
+    <div class="section-head">
+      <h2>Truck-Load Pricing Tiers</h2>
+      <p>Most full cleanouts are priced by how much of the truck your job fills. Our trucks hold about 15 cubic yards.</p>
+    </div>
+    <div class="pricing-grid">
+      <div class="price-card">
+        <h3>1/4 Truck</h3>
+        <div class="price">$200</div>
+        <p class="price-note">Up to ~4 cubic yards</p>
+        <ul>
+          <li>A few large items or a small cleanout</li>
+          <li>Single-room furniture pickup</li>
+          <li>Small garage corner</li>
+          <li>Loading included</li>
+          <li>Disposal fees included</li>
+        </ul>
+      </div>
+      <div class="price-card featured">
+        <h3>1/2 Truck</h3>
+        <div class="price">$400</div>
+        <p class="price-note">Up to ~7 cubic yards</p>
+        <ul>
+          <li>Single-room cleanout</li>
+          <li>Small basement or garage</li>
+          <li>Multiple appliances</li>
+          <li>Loading included</li>
+          <li>Disposal fees included</li>
+        </ul>
+      </div>
+      <div class="price-card">
+        <h3>3/4 Truck</h3>
+        <div class="price">$575</div>
+        <p class="price-note">Up to ~11 cubic yards</p>
+        <ul>
+          <li>Mid-size garage or basement</li>
+          <li>Full furniture set from a home</li>
+          <li>Storage unit cleanout</li>
+          <li>Loading included</li>
+          <li>Disposal fees included</li>
+        </ul>
+      </div>
+      <div class="price-card">
+        <h3>Full Truck</h3>
+        <div class="price">$750</div>
+        <p class="price-note">Up to ~15 cubic yards</p>
+        <ul>
+          <li>Packed two-car garage</li>
+          <li>Full basement cleanout</li>
+          <li>Multi-room furniture</li>
+          <li>Loading included</li>
+          <li>Disposal fees included</li>
+        </ul>
+      </div>
+    </div>
+    <p style="text-align:center; margin-top:1.5rem; color:var(--gray); font-size:0.95rem;">Prices are typical Des Moines metro ranges. Final price depends on access, weight, and special items. We confirm flat-rate in writing before any work starts.</p>
+  </div>
+</section>
+
+<section class="section-alt">
+  <div class="container">
+    <div class="section-head">
+      <h2>Pricing by Service</h2>
+      <p>Common single-service rates across the Des Moines metro.</p>
+    </div>
+    <div class="card-grid">
+      {services.map((s) => (
+        <div class="card">
+          <div class="icon-circle"><Icon name={s.icon} size={28} /></div>
+          <h3>{s.shortName}</h3>
+          {s.priceFrom && <p style="font-family:'League Spartan',sans-serif; font-weight:700; color:var(--navy); font-size:1.4rem; margin-bottom:0.5rem;">Starting at {s.priceFrom}</p>}
+          <p>{s.pricing}</p>
+          <a href={`/${s.slug}/`} class="card-link">See full {s.shortName.toLowerCase()} pricing <Icon name="arrowright" size={14} /></a>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container-narrow">
+    <h2>What Affects Your Final Price</h2>
+    <ul>
+      <li><strong>Volume:</strong> how much of the truck your job fills (the single biggest factor)</li>
+      <li><strong>Weight:</strong> heavy materials (concrete, brick, tile, shingles) carry per-ton transfer station fees</li>
+      <li><strong>Labor:</strong> stairs, long carries, and disassembly add time but we still quote flat-rate</li>
+      <li><strong>Special items:</strong> refrigerators and freezers (EPA-compliant recycling), mattresses (Iowa per-unit fee), TVs and e-waste (Iowa recycling fee), tires (per-tire disposal fee)</li>
+      <li><strong>Hazardous items:</strong> wet paint, motor oil, gasoline, propane tanks, and pesticides cannot go in the truck. We can advise on the right Polk County drop-off facility.</li>
+    </ul>
+
+    <h2>What's Always Included</h2>
+    <ul>
+      <li>All loading and carrying labor</li>
+      <li>Floor and door-frame protection</li>
+      <li>Sweep-up after the load</li>
+      <li>Transfer station fees</li>
+      <li>Donation and recycling routing whenever possible</li>
+      <li>Licensed and insured hauling</li>
+    </ul>
+
+    <h2>How to Get a Real Price</h2>
+    <p>The fastest way to a real flat-rate price is to text photos to <a href={`tel:${site.phoneE164}`}>{site.phone}</a>. We send back a written quote the same day. For larger jobs (full basements, estate cleanouts, commercial work), we'll come out for a free on-site walkthrough.</p>
+  </div>
+</section>
+
+<FinalCTA heading="Ready for a Real Quote?" body="Text photos to (515) 414-2280 or fill out the form for a same-day flat-rate price." />
+
+</Layout>

@@ -1,0 +1,46 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import FinalCTA from '../../components/FinalCTA.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import { posts } from '../../data/posts';
+import { site } from '../../data/site';
+
+const title = "Des Moines Junk Removal Blog | Tips, Pricing, Local Guides";
+const description = "Honest guides on junk removal, hauling, and disposal in the Des Moines metro. Pricing, prep checklists, Iowa-specific rules, and how-to articles.";
+---
+<Layout title={title} description={description} path="/blog/">
+
+<section class="hero" style="--hero-bg: url('/images/dsm-7.jpg');">
+  <h1>Des Moines Junk Removal Blog</h1>
+  <p class="subhead">Honest answers to the questions Des Moines homeowners actually ask about junk removal, pricing, and disposal in Iowa.</p>
+  <div class="cta-row">
+    <a href={`tel:${site.phoneE164}`} class="btn btn-primary">Call {site.phone}</a>
+    <a href="/contact/" class="btn btn-outline-white">Get a Free Quote</a>
+  </div>
+</section>
+
+<Breadcrumb trail={[{ name: "Home", href: "/" }, { name: "Blog" }]} />
+
+<section>
+  <div class="container">
+    <div class="blog-grid">
+      {posts.map((p) => (
+        <article class="blog-card">
+          <a href={`/blog/${p.slug}/`}>
+            <img src={p.image} alt={p.imageAlt} loading="lazy" decoding="async" />
+            <div class="body">
+              <div class="meta">{p.date} · {p.readTime} read</div>
+              <h3>{p.title}</h3>
+              <p>{p.excerpt}</p>
+              <span class="read-more">Read article →</span>
+            </div>
+          </a>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<FinalCTA />
+
+</Layout>

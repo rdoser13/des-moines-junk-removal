@@ -1,0 +1,65 @@
+---
+import Layout from '../layouts/Layout.astro';
+import FinalCTA from '../components/FinalCTA.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import { site } from '../data/site';
+
+const title = "Before & After Gallery | Des Moines Junk Removal";
+const description = "Real before and after photos from Des Moines junk removal jobs: garage cleanouts, basement clear-outs, furniture removal, and full estate cleanouts.";
+
+// Note: using existing brand photos as paired before/after placeholders.
+// When real before/after pairs are available, swap into this array.
+const gallery = [
+  { title: "Garage Cleanout - West Des Moines", desc: "Packed two-car garage cleared in one visit.", before: "/images/dsm-5.jpg", after: "/images/dsm-4.jpg" },
+  { title: "Basement Clear-Out - Beaverdale", desc: "Decades of stored furniture and boxes hauled out.", before: "/images/dsm-6.jpg", after: "/images/dsm-11.jpg" },
+  { title: "Furniture Removal - Ankeny", desc: "Full living room and bedroom set from a 2nd-floor unit.", before: "/images/dsm-2.jpg", after: "/images/dsm-7.jpg" },
+  { title: "Construction Debris - Waukee Remodel", desc: "Kitchen tear-out hauled within 24 hours of demo.", before: "/images/dsm-8.jpg", after: "/images/dsm-10.jpg" },
+  { title: "Estate Cleanout - Johnston", desc: "Full single-family home cleared over two days.", before: "/images/dsm-11.jpg", after: "/images/dsm-12.jpg" },
+  { title: "Appliance Removal - Urbandale", desc: "Fridge, washer, dryer, and water heater hauled and recycled.", before: "/images/dsm-3.jpg", after: "/images/dsm-9.jpg" },
+];
+---
+<Layout title={title} description={description} path="/gallery/">
+
+<section class="hero" style="--hero-bg: url('/images/dsm-1.jpg');">
+  <h1>Before &amp; After Gallery</h1>
+  <p class="subhead">Real jobs across the Des Moines metro. The kind of clean spaces we leave behind.</p>
+  <div class="cta-row">
+    <a href={`tel:${site.phoneE164}`} class="btn btn-primary">Call {site.phone}</a>
+    <a href="/contact/" class="btn btn-outline-white">Get a Free Quote</a>
+  </div>
+</section>
+
+<Breadcrumb trail={[{ name: "Home", href: "/" }, { name: "Gallery" }]} />
+
+<section>
+  <div class="container">
+    <div class="section-head">
+      <h2>Recent Jobs Across the Des Moines Metro</h2>
+      <p>From single-couch pickups to full estate cleanouts.</p>
+    </div>
+    <div class="gallery">
+      {gallery.map((g) => (
+        <div class="before-after">
+          <div class="pair">
+            <figure>
+              <img src={g.before} alt={`${g.title} before`} loading="lazy" decoding="async" />
+              <figcaption>Before</figcaption>
+            </figure>
+            <figure>
+              <img src={g.after} alt={`${g.title} after`} loading="lazy" decoding="async" />
+              <figcaption class="after">After</figcaption>
+            </figure>
+          </div>
+          <div class="caption">
+            <h4>{g.title}</h4>
+            <p>{g.desc}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<FinalCTA heading="Your Space Could Be Next" body="Send photos for a flat-rate quote. Same-week pickup across the Des Moines metro." />
+
+</Layout>

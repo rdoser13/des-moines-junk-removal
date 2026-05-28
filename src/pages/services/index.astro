@@ -1,0 +1,62 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import FinalCTA from '../../components/FinalCTA.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import Icon from '../../components/Icon.astro';
+import { services } from '../../data/services';
+import { site } from '../../data/site';
+
+const title = "Junk Removal Services in Des Moines | Des Moines Junk Removal";
+const description = "Full junk removal services in Des Moines and the surrounding metro: furniture, appliances, garage cleanouts, basement cleanouts, construction debris, estate cleanouts, commercial, and hot tubs. Call (515) 414-2280.";
+
+const additionalServices = [
+  "Rental Property Cleanouts", "Yard Waste Removal", "Shed Tear-Down and Removal", "E-Waste and TV Removal", "Mattress Removal", "Piano Removal", "Exercise Equipment Removal", "Storage Unit Cleanouts",
+];
+---
+<Layout title={title} description={description} path="/services/">
+
+<section class="hero" style="--hero-bg: url('/images/dsm-5.jpg');">
+  <h1>Junk Removal Services in Des Moines</h1>
+  <p class="subhead">From a single couch pickup to a full basement clear-out. Family-owned, fully insured, same-week service across the metro.</p>
+  <div class="cta-row">
+    <a href={`tel:${site.phoneE164}`} class="btn btn-primary"><Icon name="phone" size={18} /> Call {site.phone}</a>
+    <a href="/contact/" class="btn btn-outline-white">Get a Free Quote</a>
+  </div>
+</section>
+
+<Breadcrumb trail={[{ name: "Home", href: "/" }, { name: "Services" }]} />
+
+<section>
+  <div class="container">
+    <div class="section-head">
+      <h2>Our Core Junk Removal Services</h2>
+      <p>Eight services we run across the Des Moines metro every week.</p>
+    </div>
+    <div class="card-grid">
+      {services.map((s) => (
+        <div class="card">
+          <div class="icon-circle"><Icon name={s.icon} size={30} /></div>
+          <h3>{s.name}</h3>
+          {s.priceFrom && <p style="font-family:'Montserrat',sans-serif; font-weight:700; color:var(--green-hover); font-size:0.9rem; margin-bottom:0.5rem; text-transform:uppercase; letter-spacing:0.03em;">Starting at {s.priceFrom}</p>}
+          <p>{s.cardBlurb}</p>
+          <a href={`/${s.slug}/`} class="card-link">Learn more <Icon name="arrowright" size={14} /></a>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section class="section-alt">
+  <div class="container-narrow">
+    <h2>Other Junk Removal Services We Offer</h2>
+    <p>If it's not on the list, ask. We handle most non-hazardous hauling jobs across Des Moines and the surrounding metro:</p>
+    <ul>
+      {additionalServices.map((s) => (<li>{s}</li>))}
+    </ul>
+    <p>Don't see your job listed? Call <a href={`tel:${site.phoneE164}`}>{site.phone}</a> or send photos and we'll let you know on the spot.</p>
+  </div>
+</section>
+
+<FinalCTA />
+
+</Layout>

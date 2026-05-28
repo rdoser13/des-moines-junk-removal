@@ -1,0 +1,29 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { site } from '../data/site';
+import { services } from '../data/services';
+---
+<Layout title="Page Not Found | Des Moines Junk Removal" description="The page you were looking for wasn't found. Browse our junk removal services or call (515) 414-2280." path="/404/">
+
+<section class="hero" style="--hero-bg: url('/images/dsm-1.jpg');">
+  <h1>Page Not Found</h1>
+  <p class="subhead">The page you were looking for moved or doesn't exist. But we're still here to haul your junk.</p>
+  <div class="cta-row">
+    <a href="/" class="btn btn-primary">Back to Home</a>
+    <a href={`tel:${site.phoneE164}`} class="btn btn-outline-white">Call {site.phone}</a>
+  </div>
+</section>
+
+<section>
+  <div class="container-narrow">
+    <h2>Looking for one of these?</h2>
+    <ul>
+      {services.map((s) => (<li><a href={`/${s.slug}/`}>{s.name} in Des Moines</a></li>))}
+      <li><a href="/service-area/">Our full service area</a></li>
+      <li><a href="/about/">About us</a></li>
+      <li><a href="/contact/">Get a free quote</a></li>
+    </ul>
+  </div>
+</section>
+
+</Layout>

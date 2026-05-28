@@ -1,0 +1,29 @@
+---
+import { site } from '../data/site';
+export interface Props { subject?: string; }
+const { subject = `New lead from ${site.name} site` } = Astro.props;
+// TODO: Replace REPLACE_WITH_WEB3FORMS_KEY with your Web3Forms access key from https://web3forms.com
+---
+<form class="quote-form" action="https://api.web3forms.com/submit" method="POST">
+  <input type="hidden" name="access_key" value="REPLACE_WITH_WEB3FORMS_KEY" />
+  <input type="hidden" name="subject" value={subject} />
+  <input type="hidden" name="from_name" value={site.name} />
+  <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off" />
+
+  <label for="name">Your Name</label>
+  <input id="name" type="text" name="name" required placeholder="Full name" />
+
+  <label for="phone">Phone</label>
+  <input id="phone" type="tel" name="phone" required placeholder="(515) 555-1234" />
+
+  <label for="email">Email</label>
+  <input id="email" type="email" name="email" required placeholder="you@example.com" />
+
+  <label for="city">City</label>
+  <input id="city" type="text" name="city" required placeholder="Des Moines, Ankeny, Urbandale, etc." />
+
+  <label for="service">What do you need removed?</label>
+  <textarea id="service" name="service" required placeholder="Couch, fridge, full garage cleanout, etc. Photos help: text them to (515) 414-2280 after submitting."></textarea>
+
+  <button type="submit" class="btn btn-primary">Request My Free Quote</button>
+</form>

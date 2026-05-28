@@ -1,0 +1,31 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import { site } from '../data/site';
+---
+<Layout title="Disclaimer | Des Moines Junk Removal" description="General disclaimer for the Des Moines Junk Removal website." path="/disclaimer/">
+
+<section style="padding-top:3rem;">
+  <Breadcrumb trail={[{ name: "Home", href: "/" }, { name: "Disclaimer" }]} />
+  <div class="container legal-content">
+    <h1>Disclaimer</h1>
+    <p class="note">This is a starting template. For final legal review, consult a licensed attorney in Iowa.</p>
+
+    <h2>Informational Purposes</h2>
+    <p>The information on this website is for general informational purposes only. While we keep service descriptions, pricing ranges, and service area details as accurate as possible, nothing on this site should be treated as a binding offer or contract.</p>
+
+    <h2>Pricing</h2>
+    <p>Pricing ranges shown on service pages are estimates only. Final pricing requires an on-site assessment or photos sent in for review. The flat-rate quote we send you in writing is the price you'll pay.</p>
+
+    <h2>Service Outcomes</h2>
+    <p>We work hard to deliver every job on time and on budget, but we make no guarantee of specific outcomes regarding scheduling availability, donation pickup acceptance, or recycling outcomes for individual items.</p>
+
+    <h2>Licensed and Insured</h2>
+    <p>Des Moines Junk Removal is a licensed Iowa hauling contractor with full general liability insurance.</p>
+
+    <h2>Contact</h2>
+    <p>Questions? Call <a href={`tel:${site.phoneE164}`}>{site.phone}</a> or email <a href={`mailto:${site.email}`}>{site.email}</a>.</p>
+  </div>
+</section>
+
+</Layout>

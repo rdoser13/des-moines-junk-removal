@@ -1,0 +1,264 @@
+---
+import Layout from '../layouts/Layout.astro';
+import FinalCTA from '../components/FinalCTA.astro';
+import Icon from '../components/Icon.astro';
+import { site } from '../data/site';
+import { services } from '../data/services';
+import { cities } from '../data/cities';
+import { posts } from '../data/posts';
+
+const title = "Des Moines Junk Removal | Family-Owned Hauling Service";
+const description = "Family-owned junk removal and hauling in Des Moines and the surrounding metro. Furniture, appliances, garage and basement cleanouts. Call (515) 414-2280.";
+
+const localBusinessLd = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": site.name,
+  "image": `${site.url}/images/og.jpg`,
+  "logo": `${site.url}/images/logo.png`,
+  "telephone": site.phoneE164,
+  "email": site.email,
+  "url": site.url,
+  "description": description,
+  "areaServed": cities.map((c) => ({ "@type": "City", "name": c.name })),
+  "address": { "@type": "PostalAddress", "addressLocality": "Des Moines", "addressRegion": "IA", "addressCountry": "US" },
+  "openingHours": "Mo-Sa 07:00-19:00",
+  "priceRange": "$$"
+};
+
+const teaserPosts = posts.slice(0, 3);
+const teaserGallery = [
+  { title: "Garage Cleanout - West Des Moines", before: "/images/dsm-5.jpg", after: "/images/dsm-4.jpg" },
+  { title: "Basement Clear-Out - Beaverdale", before: "/images/dsm-6.jpg", after: "/images/dsm-11.jpg" },
+  { title: "Estate Cleanout - Johnston", before: "/images/dsm-11.jpg", after: "/images/dsm-12.jpg" },
+];
+---
+<Layout title={title} description={description} path="/" jsonLd={localBusinessLd}>
+
+<section class="hero" style="--hero-bg: url('/images/dsm-1.jpg');">
+  <h1>Des Moines Junk Removal Made Easy</h1>
+  <p class="subhead">Family-owned junk removal and hauling for homes, businesses, apartments, and job sites across the Des Moines metro. We Lift. You Relax.</p>
+  <div class="cta-row">
+    <a href={`tel:${site.phoneE164}`} class="btn btn-primary"><Icon name="phone" size={18} /> Call {site.phone}</a>
+    <a href="/contact/" class="btn btn-outline-white">Get a Free Quote</a>
+  </div>
+  <div class="hero-trust">
+    <span><Icon name="users" size={16} /> Family-Owned</span>
+    <span><Icon name="shield" size={16} /> 12 Years in Business</span>
+    <span><Icon name="check" size={16} /> Licensed &amp; Insured</span>
+    <span><Icon name="mappin" size={16} /> Des Moines Metro</span>
+  </div>
+</section>
+
+<div class="trust-strip">
+  <div class="inner">
+    <span><Icon name="clock" size={18} /> Same-Week Pickup</span>
+    <span><Icon name="dollar" size={18} /> Flat-Rate Pricing</span>
+    <span><Icon name="recycle" size={18} /> Responsible Disposal</span>
+    <span><Icon name="shield" size={18} /> Licensed Iowa Hauling Contractor</span>
+  </div>
+</div>
+
+<section>
+  <div class="container">
+    <div class="section-head">
+      <h2>Junk Removal Services in Des Moines</h2>
+      <p>From a single couch to a full basement, we haul the heavy stuff so you don't have to.</p>
+    </div>
+    <div class="card-grid">
+      {services.map((s) => (
+        <div class="card">
+          <div class="icon-circle"><Icon name={s.icon} size={30} /></div>
+          <h3>{s.name}</h3>
+          {s.priceFrom && <p style="font-family:'Montserrat',sans-serif; font-weight:700; color:var(--green-hover); font-size:0.9rem; margin-bottom:0.5rem; text-transform:uppercase; letter-spacing:0.03em;">Starting at {s.priceFrom}</p>}
+          <p>{s.cardBlurb}</p>
+          <a href={`/${s.slug}/`} class="card-link">Learn more <Icon name="arrowright" size={14} /></a>
+        </div>
+      ))}
+    </div>
+    <p style="text-align:center; margin-top:2rem;">
+      <a href="/services/" class="btn btn-outline-navy">See All Junk Removal Services</a>
+    </p>
+  </div>
+</section>
+
+<section class="section-alt">
+  <div class="container">
+    <div class="split">
+      <div>
+        <h2>Trusted Des Moines Hauling Since 2014</h2>
+        <p>Des Moines Junk Removal is a family-owned junk removal and hauling company serving the Des Moines metro. For twelve years we've cleared out homes, garages, basements, rental properties, and job sites across Polk, Dallas, and Warren counties.</p>
+        <p>We built this business on the basics: show up on time, lift the heavy stuff, give a fair flat-rate price, and clean up before we leave. No hidden fees. No upsells. No grimy contractor truck blocking your driveway for a week.</p>
+        <p><a href="/about/" class="btn btn-outline-navy">More About Us</a></p>
+      </div>
+      <img src="/images/dsm-4.jpg" alt="Des Moines junk removal truck and crew at residential property" loading="lazy" decoding="async" />
+    </div>
+  </div>
+</section>
+
+<section class="section-dark">
+  <div class="container">
+    <div class="stats">
+      <div class="stat"><div class="num">12+</div><div class="label">Years in Business</div></div>
+      <div class="stat"><div class="num">12</div><div class="label">Metro Cities Served</div></div>
+      <div class="stat"><div class="num">8</div><div class="label">Core Services</div></div>
+      <div class="stat"><div class="num">100%</div><div class="label">Licensed &amp; Insured</div></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="section-head">
+      <h2>Before &amp; After</h2>
+      <p>The kind of clean spaces we leave behind across the Des Moines metro.</p>
+    </div>
+    <div class="gallery">
+      {teaserGallery.map((g) => (
+        <div class="before-after">
+          <div class="pair">
+            <figure><img src={g.before} alt={`${g.title} before`} loading="lazy" /><figcaption>Before</figcaption></figure>
+            <figure><img src={g.after} alt={`${g.title} after`} loading="lazy" /><figcaption class="after">After</figcaption></figure>
+          </div>
+          <div class="caption"><h4>{g.title}</h4></div>
+        </div>
+      ))}
+    </div>
+    <p style="text-align:center; margin-top:2rem;">
+      <a href="/gallery/" class="btn btn-outline-navy">See Full Gallery</a>
+    </p>
+  </div>
+</section>
+
+<section class="section-alt">
+  <div class="container">
+    <div class="section-head">
+      <h2>Serving the Greater Des Moines Metro</h2>
+      <p>Same-week junk removal pickup across every city in the metro.</p>
+    </div>
+    <div class="city-grid">
+      {cities.map((c) => (
+        <a href={`/${c.slug}/`}>Junk Removal {c.name}</a>
+      ))}
+    </div>
+    <p style="text-align:center; margin-top:1.5rem;">
+      <a href="/service-area/">See full service area →</a>
+    </p>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="section-head">
+      <h2>Honest Flat-Rate Pricing</h2>
+      <p>No hourly meter. No surprise fees. What you're quoted is what you pay.</p>
+    </div>
+    <div class="pricing-grid" style="max-width:880px; margin:2rem auto 0;">
+      <div class="price-card">
+        <h3>1/4 Truck</h3>
+        <div class="price">$200</div>
+        <p class="price-note">Single-room pickup</p>
+      </div>
+      <div class="price-card featured">
+        <h3>1/2 Truck</h3>
+        <div class="price">$400</div>
+        <p class="price-note">Small basement or garage</p>
+      </div>
+      <div class="price-card">
+        <h3>Full Truck</h3>
+        <div class="price">$750</div>
+        <p class="price-note">Packed garage or basement</p>
+      </div>
+    </div>
+    <p style="text-align:center; margin-top:2rem;">
+      <a href="/pricing/" class="btn btn-outline-navy">See Full Pricing</a>
+    </p>
+  </div>
+</section>
+
+<section class="section-alt">
+  <div class="container">
+    <div class="section-head">
+      <h2>Why Des Moines Chooses Us</h2>
+    </div>
+    <ul class="bullets">
+      <li><strong>Family-Owned</strong>Local owners on the truck, not a national franchise reading from a script.</li>
+      <li><strong>12 Years Serving the Metro</strong>We've hauled out of every kind of Des Moines home, garage, and basement there is.</li>
+      <li><strong>Licensed and Insured</strong>Fully licensed Iowa hauling contractor with insurance that protects your property.</li>
+      <li><strong>Honest Flat-Rate Pricing</strong>You get a clear price before we load a thing. No hourly meter, no surprise fees.</li>
+      <li><strong>Same-Week Pickup</strong>Most jobs are scheduled within 2 to 4 days. Same-day slots open regularly.</li>
+      <li><strong>Responsible Disposal</strong>We donate and recycle first. What's left goes to the right transfer station, not a roadside ditch.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="section-head">
+      <h2>How It Works</h2>
+      <p>Four simple steps from quote to clean space.</p>
+    </div>
+    <div class="process">
+      <div class="step"><h3>Request a Quote</h3><p>Text photos to (515) 414-2280 or fill out the form. We send a flat-rate price the same day.</p></div>
+      <div class="step"><h3>Schedule Pickup</h3><p>Pick a day and a two-hour arrival window that works for you.</p></div>
+      <div class="step"><h3>We Load Everything</h3><p>Our crew handles the heavy lifting and protects your floors on the way out.</p></div>
+      <div class="step"><h3>Enjoy the Clean Space</h3><p>We haul it away and sweep up before we leave.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section-alt">
+  <div class="container">
+    <div class="section-head">
+      <h2>What Our Customers Say</h2>
+    </div>
+    <div class="reviews">
+      <div class="review">
+        <div class="stars">★★★★★</div>
+        <p>"[REAL REVIEW PLACEHOLDER - pull from Google Business Profile once available.]"</p>
+        <div class="who">First Name, City</div>
+      </div>
+      <div class="review">
+        <div class="stars">★★★★★</div>
+        <p>"[REAL REVIEW PLACEHOLDER - pull from Google Business Profile once available.]"</p>
+        <div class="who">First Name, City</div>
+      </div>
+      <div class="review">
+        <div class="stars">★★★★★</div>
+        <p>"[REAL REVIEW PLACEHOLDER - pull from Google Business Profile once available.]"</p>
+        <div class="who">First Name, City</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="section-head">
+      <h2>From the Blog</h2>
+      <p>Honest guides on junk removal, pricing, and disposal in the Des Moines metro.</p>
+    </div>
+    <div class="blog-grid">
+      {teaserPosts.map((p) => (
+        <article class="blog-card">
+          <a href={`/blog/${p.slug}/`}>
+            <img src={p.image} alt={p.imageAlt} loading="lazy" />
+            <div class="body">
+              <div class="meta">{p.date} · {p.readTime} read</div>
+              <h3>{p.title}</h3>
+              <p>{p.excerpt}</p>
+              <span class="read-more">Read article →</span>
+            </div>
+          </a>
+        </article>
+      ))}
+    </div>
+    <p style="text-align:center; margin-top:2rem;">
+      <a href="/blog/" class="btn btn-outline-navy">See All Blog Posts</a>
+    </p>
+  </div>
+</section>
+
+<FinalCTA />
+
+</Layout>

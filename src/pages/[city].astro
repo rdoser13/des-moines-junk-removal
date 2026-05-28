@@ -1,0 +1,122 @@
+---
+import Layout from '../layouts/Layout.astro';
+import FinalCTA from '../components/FinalCTA.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import Icon from '../components/Icon.astro';
+import QuoteForm from '../components/QuoteForm.astro';
+import { cities } from '../data/cities';
+import { services } from '../data/services';
+import { site } from '../data/site';
+
+export async function getStaticPaths() {
+  return cities.map((c) => ({ params: { city: c.slug }, props: { city: c } }));
+}
+
+const { city } = Astro.props;
+const path = `/${city.slug}/`;
+
+const metaTitle = `Junk Removal in ${city.name}, IA | Des Moines Junk Removal`;
+const metaDescription = `Junk removal in ${city.name}, Iowa. Furniture, appliances, garage and basement cleanouts. Family-owned, licensed, insured. Call (515) 414-2280.`;
+
+const serviceLd = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "serviceType": "Junk Removal",
+  "provider": { "@type": "LocalBusiness", "name": site.name, "telephone": site.phoneE164, "url": site.url },
+  "areaServed": { "@type": "City", "name": city.name, "containedInPlace": { "@type": "State", "name": "Iowa" } },
+  "description": `Junk removal and hauling in ${city.name}, IA and the surrounding Des Moines metro.`,
+  "url": `${site.url}${path}`
+};
+const crumbsLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": site.url + "/" },
+    { "@type": "ListItem", "position": 2, "name": "Service Area", "item": site.url + "/service-area/" },
+    { "@type": "ListItem", "position": 3, "name": city.name, "item": site.url + path }
+  ]
+};
+---
+<Layout title={metaTitle} description={metaDescription} path={path} jsonLd={[serviceLd, crumbsLd]}>
+
+<section class="hero" style={`--hero-bg: url('${city.image}');`}>
+  <h1>Junk Removal in {city.name}, Iowa</h1>
+  <p class="subhead">Family-owned junk removal and hauling for {city.name} homes, businesses, and rental properties. Same-week pickup, flat-rate pricing.</p>
+  <div class="cta-row">
+    <a href={`tel:${site.phoneE164}`} class="btn btn-primary"><Icon name="phone" size={18} /> Call {site.phone}</a>
+    <a href="/contact/" class="btn btn-outline-white">Get a Free Quote</a>
+  </div>
+  <div class="hero-trust">
+    <span><Icon name="shield" size={16} /> Licensed &amp; Insured</span>
+    <span><Icon name="users" size={16} /> Family-Owned</span>
+    <span><Icon name="clock" size={16} /> Same-Week Pickup</span>
+    <span><Icon name="dollar" size={16} /> Flat-Rate Quotes</span>
+  </div>
+</section>
+
+<Breadcrumb trail={[{ name: "Home", href: "/" }, { name: "Service Area", href: "/service-area/" }, { name: city.name }]} />
+
+<section>
+  <div class="container-narrow">
+    <h2>Local Junk Removal in {city.name}</h2>
+    {city.intro.map((p) => (<p>{p}</p>))}
+  </div>
+</section>
+
+<section class="section-alt">
+  <div class="container">
+    <div class="section-head">
+      <h2>Junk Removal Services in {city.name}</h2>
+      <p>The same eight services we run across the Des Moines metro, all available in {city.name}.</p>
+    </div>
+    <div class="card-grid">
+      {services.map((s) => (
+        <div class="card">
+          <div class="icon-circle"><Icon name={s.icon} size={32} /></div>
+          <h3>{s.shortName} in {city.name}</h3>
+          <p>{s.cardBlurb}</p>
+          <a href={`/${s.slug}/`} class="card-link">Learn more <Icon name="arrowright" size={14} /></a>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container-narrow local-sections">
+    {city.localSections.map((sec) => (
+      <>
+        <h2>{sec.heading}</h2>
+        <p>{sec.body}</p>
+      </>
+    ))}
+  </div>
+</section>
+
+<section class="section-alt">
+  <div class="container-narrow">
+    <h2>Neighborhoods We Serve in {city.name}</h2>
+    <p>Our crew runs junk removal jobs across every part of {city.name}, including:</p>
+    <ul>
+      {city.neighborhoods.map((n) => (<li>{n}</li>))}
+    </ul>
+    <h3 style="margin-top:1.5rem;">{city.name} ZIP Codes We Cover</h3>
+    <p>{city.zips.join(' · ')}</p>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="section-head">
+      <h2>Get a Free {city.name} Junk Removal Quote</h2>
+      <p>Send a few photos and we'll send back a flat-rate price the same day.</p>
+    </div>
+    <div class="embedded-form">
+      <QuoteForm subject={`New lead from ${city.name} city page`} />
+    </div>
+  </div>
+</section>
+
+<FinalCTA heading={`Need Junk Removal in ${city.name}?`} body={`Text photos to ${site.phone} for a same-day flat-rate quote. Same-week pickup across ${city.name} and the Des Moines metro.`} />
+
+</Layout>
